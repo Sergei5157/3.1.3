@@ -15,18 +15,26 @@
 <table border="1">
   <tr>
     <th>id</th>
-    <th>name</th>
-    <th>age</th>
-    <th>salary</th>
+    <th>firstName</th>
+    <th>LastName</th>
+    <th>Age</th>
+    <th>Email</th>
     <th>password</th>
+    <th>role</th>
   </tr>
   <tr th:each="users, state : ${user}"
       class="row" th:classappend="${state.odd}">
     <td th:utext="${users.id}">ID</td>
-    <td th:utext="${users.name}">Name</td>
+    <td th:utext="${users.firstName}">First Name</td>
+    <td th:utext="${users.lastName}">Last Name</td>
     <td th:utext="${users.age}">Age</td>
-    <td th:utext="${users.salary}">Salary</td>
+    <td th:utext="${users.email}">Email</td>
     <td th:utext="${users.password}">Password</td>
+    <td>
+  <div th:each="role : ${user.getRoles()}">
+    <p th:text="${role.name}"></p>
+  </div>
+    </td>
   </tr>
 </table>
 <br/>

@@ -40,16 +40,17 @@ public class UserServiceImp implements UserService {
     @Override
     public void update(long id, User user) {
         User userUpdate = getOne(id);
-        userUpdate.setName(user.getName());
+        userUpdate.setFirstName(user.getFirstName());
+        userUpdate.setLastName(user.getLastName());
         userUpdate.setAge(user.getAge());
         userUpdate.setPassword(user.getPassword());
         userUpdate.setRoles(user.getRoles());
-        userUpdate.setSalary(user.getSalary());
+        userUpdate.setEmail(user.getEmail());
     }
 
     @Override
-    public User findByUser_login(String name) {
-        return userRepository.findByName(name);
+    public User findByUserEmail(String name) {
+        return userRepository.findByEmail(name);
 
     }
 }

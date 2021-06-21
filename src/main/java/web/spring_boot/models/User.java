@@ -20,16 +20,19 @@ public class User implements UserDetails {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "firstName")
+    private String firstName;
+
+    @Column(name = "lastName")
+    private String lastName;
 
 
     @Column(name = "age")
     private byte age;
 
 
-    @Column(name = "salary")
-    private int salary;
+    @Column(name = "email")
+    private String email;
 
 
     @Column(name = "password")
@@ -45,12 +48,6 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(String name, byte age, int salary, String password) {
-        this.name = name;
-        this.age = age;
-        this.salary = salary;
-        this.password = password;
-    }
 
 
     @Override
@@ -64,7 +61,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return name;
+        return email;
     }
 
     @Override

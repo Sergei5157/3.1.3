@@ -5,7 +5,7 @@ import web.spring_boot.models.User;
 import java.util.List;
 
 public interface UserService {
-    User findByUser_login(String login_name);
+    User findByUserEmail(String login_name);
 
     List<User> getAll();
 

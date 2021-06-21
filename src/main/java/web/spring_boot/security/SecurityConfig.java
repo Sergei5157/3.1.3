@@ -39,8 +39,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/user/**").hasRole("USER")
                 .and()
-                .formLogin()
-                .loginProcessingUrl("/")
+                .formLogin().loginPage("/login")
+                .usernameParameter("email")
+                .permitAll()
                 .successHandler(loginSuccessHandler)
                 .and()
                 .logout().logoutSuccessUrl("/");
@@ -50,4 +51,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder() {
         return NoOpPasswordEncoder.getInstance();
     }
+
 }

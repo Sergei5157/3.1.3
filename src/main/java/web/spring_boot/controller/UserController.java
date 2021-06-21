@@ -26,7 +26,10 @@ public class UserController {
     @Autowired
     private RoleService roleService;
 
-
+    @GetMapping(value = "login")
+    public String loginPage() {
+        return "login";
+    }
     @GetMapping(value = "/")
     public String printWelcome(ModelMap model) {
         List<String> messages = new ArrayList<>();
@@ -36,10 +39,19 @@ public class UserController {
         return "index";
     }
 
-    @GetMapping(value = "admin/users")
-    public String allUsers(Model model) {
+    @GetMapping(value = "admin/users/{id}")
+    public String allUsers(@PathVariable("id") long id,Model model) {
         List<User> users = userService.getAll();
-        model.addAttribute("user", users);
+        User user = userService.getOne(id);
+        Set<Role> role =user.getRoles();
+        StringBuilder roles = new StringBuilder();
+        for(Role r :role){
+            roles.append(r.getName());
+            roles.append(" ");
+        }
+        model.addAttribute("user", userService.getOne(id));
+        model.addAttribute("users", users);
+        model.addAttribute("role", roles.toString());
         return "users";
     }
 

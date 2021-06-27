@@ -3,11 +3,13 @@ package web.spring_boot.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import web.spring_boot.models.Role;
 import web.spring_boot.models.User;
 import web.spring_boot.repository.UserRepository;
 
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 @Transactional
@@ -24,7 +26,7 @@ public class UserServiceImp implements UserService {
 
     @Override
     public User getOne(long id) {
-        return userRepository.getById(id);
+        return userRepository.findById(id).get();
     }
 
     @Override
@@ -33,19 +35,8 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public void remove(long id) {
-       userRepository.deleteById(id);
-    }
-
-    @Override
-    public void update(long id, User user) {
-        User userUpdate = getOne(id);
-        userUpdate.setFirstName(user.getFirstName());
-        userUpdate.setLastName(user.getLastName());
-        userUpdate.setAge(user.getAge());
-        userUpdate.setPassword(user.getPassword());
-        userUpdate.setRoles(user.getRoles());
-        userUpdate.setEmail(user.getEmail());
+    public void remove(User user) {
+        userRepository.delete(user);
     }
 
     @Override

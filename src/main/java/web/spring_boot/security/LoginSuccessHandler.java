@@ -29,11 +29,11 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
         Set<String> roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
         if (roles.contains("ROLE_ADMIN")) {
             User user = userService.findByUserEmail(authentication.getName());
-            httpServletResponse.sendRedirect("admin/users/" + user.getId()+"?");
+            httpServletResponse.sendRedirect("admin/users");
         } else {
             authentication = SecurityContextHolder.getContext().getAuthentication();
             User user = userService.findByUserEmail(authentication.getName());
-            httpServletResponse.sendRedirect("user/" + user.getId() + "?");
+            httpServletResponse.sendRedirect("user");
         }
     }
 }

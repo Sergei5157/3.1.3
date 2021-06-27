@@ -2,8 +2,10 @@ package web.spring_boot.models;
 
 
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import web.spring_boot.service.UserService;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -49,7 +51,6 @@ public class User implements UserDetails {
     }
 
 
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles;
@@ -88,4 +89,13 @@ public class User implements UserDetails {
         this.password = password;
     }
 
+    public String getRoleUser() {
+        Set<Role> role = roles;
+        StringBuilder roles = new StringBuilder();
+        for (Role r : role) {
+            roles.append(r.getName());
+            roles.append(" ");
+        }
+        return roles.toString();
+    }
 }

@@ -30,18 +30,19 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public void add(User user) {
-        userRepository.save(user);
+    public User add(User user) {
+        return userRepository.save(user);
     }
 
     @Override
-    public void remove(User user) {
-        userRepository.delete(user);
+    public void remove(Long id) {
+        userRepository.deleteById(id);
     }
 
     @Override
-    public User findByUserEmail(String name) {
-        return userRepository.findByEmail(name);
+    public User findByUserEmail(String email) {
+        return userRepository.findByEmail(email);
 
     }
+
 }

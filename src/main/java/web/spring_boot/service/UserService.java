@@ -5,15 +5,15 @@ import web.spring_boot.models.User;
 import java.util.List;
 
 public interface UserService {
-    User findByUserEmail(String login_name);
+    User findByUserEmail(String email);
 
     List<User> getAll();
 
     User getOne(long id);
 
-    void add(User user);
+    User add(User user);
 
-    void remove(User user);
+    void remove(Long id);
 
 
 }
